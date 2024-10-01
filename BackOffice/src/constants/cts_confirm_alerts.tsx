@@ -1,0 +1,1 @@
+export const CONFIRM_DELETE_ACCOUNT = "Voulez-vous supprimer votre compte ?"

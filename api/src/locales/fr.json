@@ -1,0 +1,11 @@
+{
+	"wrong_email_or_password": "Email ou mot de passe incorrect",
+	"account_inaccessible": "Votre compte n'est plus accessible.",
+	"email_already_exists": "Email déjà existant",
+	"wrong_password": "Mauvais mot de passe",
+	"account_does_not_exist": "Le compte n'existe pas",
+	"user_does_not_exist": "L'utilisateur n'existe pas",
+	"email_does_not_correspond_to_any_account": "Cet email ne correspond à aucun compte",
+	"user_not_found": "Utilisateur non trouvé",
+	"Email non valide!": "Email non valide!"
+}

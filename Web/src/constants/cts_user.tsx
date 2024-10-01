@@ -1,0 +1,1 @@
+export const TOKEN_USER_AUTHENTICATED = "token_user_authenticated";

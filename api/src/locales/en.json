@@ -1,0 +1,11 @@
+{
+	"wrong_email_or_password": "Incorrect email or password",
+	"account_inaccessible": "Your account is no longer accessible.",
+	"email_already_exists": "Email already exists",
+	"wrong_password": "Wrong password",
+	"account_does_not_exist": "Account does not exist",
+	"user_does_not_exist": "User does not exist",
+	"email_does_not_correspond_to_any_account": "This email does not correspond to any account",
+	"user_not_found": "User not found",
+	"Not found": "Not found"
+}
