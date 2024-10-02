@@ -6,82 +6,78 @@ import { useTranslation } from "react-i18next";
 import { getPageUrl } from "../locales/i18n";
 import PATH from "../constants/cts_routes";
 import { useAuthentication } from "../common/contexts/authenticationContext";
-import logo from "../assets/images/logo_colored.png";
-import { COLOR_BLACK, COLOR_SPECIAL, COLOR_WHITE } from "../constants/cts_colors";
+import {
+  COLOR_BLACK,
+  COLOR_SPECIAL,
+  COLOR_WHITE,
+  GREY_CLEAR,
+  GREY_DARK,
+  WHITE,
+} from "../constants/cts_colors";
 import { AiOutlineMenu } from "react-icons/ai";
-
-/**
- * This component is used to define and design the header elements such as Home, Login/Logout or many other internal links
- * It loops through a headerElements array object defined as  :
- * ````
- *  [
-      { 
-        name: string, 
-        to: string
-      },
-      ...
-  ] 
- * ````
- * to render elements. Links rendered depend on user state (logged in or logged out)
- */
 
 const Header = () => {
   const { user } = useAuthentication();
-  const [ smallHeader, _setSmallHeader ] = useState<boolean>(false);
+  const [smallHeader, _setSmallHeader] = useState<boolean>(false);
   const { t } = useTranslation();
-  const [ showElements, _setShowElements ] = useState<boolean>(false);
+  const [showElements, _setShowElements] = useState<boolean>(false);
 
   // if user scrolled, set the small header with changed background
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", () =>
-      _setSmallHeader(window.pageYOffset > 1)
-      );
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     window.addEventListener("scroll", () =>
+  //       _setSmallHeader(window.pageYOffset > 1)
+  //     );
+  //   }
+  // }, []);
 
   return (
     <Wrapper className={smallHeader ? "small" : ""}>
       <LogoContainer>
         <Link to={getPageUrl(PATH.home)}>
-          <Logo src={logo} alt="logo" />
+          <Logo
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw_HeSzHfBorKS4muw4IIeVvvRgnhyO8Gn8w&s"
+            alt="logo"
+          />
         </Link>
       </LogoContainer>
-      <ElementsContainer className={showElements ? "show" : ""}> {/* this condition is generally for responsive, when user clicks toggle menu btn */}
-        {
-          headerElements.map((element) => {
-            return (
-              <StyledNavLink
-                to={getPageUrl(element.to)}
-                className={({ isActive }) => (isActive ? "active" : "")}
-                key={headerElements.indexOf(element)}
-              >
-                {t(`elements.${element.name}`, {ns: "header"})}
-              </StyledNavLink>
-            );
-          })
-        }
-        { 
-          user ? // check if user connected
-          (
-            <>
-              <StyledNavLink to={getPageUrl(PATH.items)}>
-                {t("itemsLink", {ns: "header"})}
-              </StyledNavLink>
-              <StyledNavLink to={getPageUrl(PATH.account)}>
-                {t("accountLink", {ns: "header"})}
-              </StyledNavLink>
-            </>
-          ) : (
-            <StyledNavLink to={getPageUrl(PATH.login)}>
-              {t("loginLink", {ns: "header"})}
+      <ElementsContainer className={showElements ? "show" : ""}>
+        {" "}
+        {/* this condition is generally for responsive, when user clicks toggle menu btn */}
+        {headerElements.map((element) => {
+          return (
+            <StyledNavLink
+              to={getPageUrl(element.to)}
+              className={({ isActive }) => (isActive ? "active" : "")}
+              key={headerElements.indexOf(element)}
+            >
+              {t(`elements.${element.name}`, { ns: "header" })}
             </StyledNavLink>
-          ) 
-        }
+          );
+        })}
+        {user ? ( // check if user connected
+          <>
+            <StyledNavLink to={getPageUrl(PATH.items)}>
+              {t("itemsLink", { ns: "header" })}
+            </StyledNavLink>
+            <StyledNavLink to={getPageUrl(PATH.account)}>
+              {t("accountLink", { ns: "header" })}
+            </StyledNavLink>
+          </>
+        ) : (
+          <StyledNavLink to={getPageUrl(PATH.login)}>
+            {t("loginLink", { ns: "header" })}
+          </StyledNavLink>
+        )}
       </ElementsContainer>
 
       {/* toggle menu btn */}
-      <AiOutlineMenu className="toggle-menu" onClick={() => _setShowElements(!showElements)} /> {/* toggle the value (set the opposite value of the current value) */}
+      <AiOutlineMenu
+        className="toggle-menu"
+        onClick={() => _setShowElements(!showElements)}
+        size={24}
+      />
+      {/* toggle the value (set the opposite value of the current value) */}
     </Wrapper>
   );
 };
@@ -98,14 +94,16 @@ const Wrapper = styled.div`
   left: 0;
   right: 0;
   display: flex;
+  justify-content: space-between;
   z-index: 100;
-  padding: 10px;
-  transition: 0.25s ease-out;
+  padding: 8px 24px;
+  transition: all 0.25s ease-out;
+  border-bottom: 1px solid ${GREY_CLEAR};
+  background: ${WHITE};
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
   // if user scrolled, set the small header with changed background
   &.small {
-    background-color: ${COLOR_WHITE};
-
     // logo
     img {
       width: 60px;
@@ -144,7 +142,7 @@ const Wrapper = styled.div`
     }
 
     // ========= MEDIA QUERIES - toggle menu btn ============
-    @media (max-width: 1100px) {
+    @media (max-width: 745px) {
       display: block;
     }
   }
@@ -156,93 +154,60 @@ const Wrapper = styled.div`
 `;
 
 const LogoContainer = styled.div`
-  flex-basis: 50%;
   display: flex;
   justify-content: center;
-`
+`;
 
 const Logo = styled.img`
   width: 100px;
-
-  // ========= MEDIA QUERIES - Logo ============
-  @media (max-width: 1100px) {
-    width: 60px;
-  }
-`
+`;
 
 const ElementsContainer = styled.div`
-  flex-basis: 50%;
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 30px;
 
   // ========= MEDIA QUERIES - ElementsContainer ============
-  @media (max-width: 1100px) {
+  @media (max-width: 745px) {
     position: absolute;
-    top: 85px;
+    top: 0;
+    z-index: 100;
     right: -100%;
+    height: 100vh;
     background-color: ${COLOR_WHITE};
     flex-direction: column;
-    padding: 1rem;
-    box-shadow: 0px 7px 11px 1px rgba(0,0,0,0.09);
-    -webkit-box-shadow: 0px 7px 11px 1px rgba(0,0,0,0.09);
-    -moz-box-shadow: 0px 7px 11px 1px rgba(0,0,0,0.09);
+    justify-content: center;
+    padding: 0px 24px;
+    box-shadow: 0px 7px 11px 1px rgba(7, 5, 5, 0.09);
+    -webkit-box-shadow: 0px 7px 11px 1px rgba(0, 0, 0, 0.09);
+    -moz-box-shadow: 0px 7px 11px 1px rgba(0, 0, 0, 0.09);
     transition: right 0.25s ease-out;
 
     &.show {
       right: 0;
     }
   }
-`
+`;
 
 const StyledNavLink = styled(NavLink)`
   display: inline-block;
   position: relative;
-  color: ${COLOR_WHITE};
-
-  // underline animation
-  :after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: ${COLOR_WHITE};
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-  }
+  font-size: 16px;
+  color: ${GREY_DARK};
+  text-underline-offset: 0.15em;
+  text-decoration: underline 0.1em rgba(0, 0, 0, 0);
+  transition: all 250ms;
 
   :hover {
-    :after {
-      transform: scaleX(1);
-      transform-origin: bottom left;
-    }
-  }
-
-  &.active {
-    :after {
-      transform: scaleX(1);
-      transform-origin: bottom left;
-    }
+    text-decoration-color: rgba(0, 0, 0, 1);
   }
 
   // ========= MEDIA QUERIES - StyledNavLink ============
-  @media (max-width: 1100px) {
+  @media (max-width: 745px) {
     color: ${COLOR_BLACK};
     font-size: 14px;
     :after {
       background-color: ${COLOR_SPECIAL};
     }
   }
-`
-
-const ElementSeparator = styled.span`
-  color: ${COLOR_WHITE};
-
-  // ========= MEDIA QUERIES - ElementSeparator ============
-  @media (max-width: 1100px) {
-    color: ${COLOR_BLACK};
-  }
-`
+`;

@@ -34,33 +34,51 @@ export default {
       emptyItemStatus: "Veuillez entrer le statut",
       // not valid
       notValidEmail: "Veuillez entrer un email valide (exemple@email.com)",
-      notValidPassword: "Veuillez entrer un mot de passe valide (plus de 6 caractères)",
-      notValidPhoneNumber: "Veuillez entrer un numéro de téléphone valide (ex: 0612345678)",
+      notValidPassword:
+        "Veuillez entrer un mot de passe valide (plus de 6 caractères)",
+      notValidPhoneNumber:
+        "Veuillez entrer un numéro de téléphone valide (ex: 0612345678)",
     },
   },
 
   // complex translations --------------------------------------------------
   translation: {
-
     // reset password page
     resetPasswordPage: {
       form: {
         infos: {
           passwordChanged: `Votre mot de passe à bien été modifié. Vous pouvez à présent vous <a href={{loginPath}}>connecter</a> à votre compte.`,
-        }
-      }
+        },
+      },
     },
-    
   },
 
   // simple translations ---------------------------------------------------
   // header
   header: {
     elements: {
-      home: "Accueil",
-      contact: "Contact",
-      about: "À propos de nous",
-      legals: "Mentions légales",
+      // home: "Accueil",
+      // contact: "Contact",
+      // about: "À propos de nous",
+      // legals: "Mentions légales",
+      diagnosis: "Diagnostic",
+      estimate: "Devis",
+      workMonitoring: "Suivi des Travaux",
+      grants: "Subventions",
+      login: "Connexion",
+    },
+    heroSection: {
+      title:
+        "Améliorez la performance énergétique de votre bien en toute simplicité",
+      subtitle:
+        "Obtenez des devis gratuits d’artisans certifiés et suivez vos travaux en toute sérénité.",
+      buttonText: "LANCER UN DIAGNOSTIC GRATUIT",
+    },
+    howItWorksSection: {
+      title: "Comment ça marche ?",
+    },
+    testimonialsSection: {
+      title: "Ce que disent nos utilisateurs",
     },
     itemsLink: "Jobs",
     loginLink: "Connexion",
@@ -90,8 +108,8 @@ export default {
       links: {
         lostPassword: "Mot de passe oublié ? cliquez ici",
         routeToLogin: "Vous n'avez pas de compte ? Inscrivez-vous ici",
-      }
-    }
+      },
+    },
   },
 
   // signup page
@@ -104,7 +122,7 @@ export default {
         email: "Adresse email",
         phoneNumber: "Numéro de téléphone (optionnel)",
         password: "Mots de passe",
-        repeatPassword: "Confirmer mots de passe"
+        repeatPassword: "Confirmer mots de passe",
       },
       placeholders: {
         firstName: "Prénom",
@@ -112,12 +130,12 @@ export default {
         email: "Adresse email",
         phoneNumber: "Numéro de téléphone (optionnel)",
         password: "Mots de passe",
-        repeatPassword: "Confirmer mots de passe"
+        repeatPassword: "Confirmer mots de passe",
       },
       links: {
         navigateToLogIn: "Déjà enregistré ? Connectez-vous ici",
       },
-    }
+    },
   },
 
   // reset password page
@@ -156,9 +174,10 @@ export default {
         email: "Adresse email",
       },
       infos: {
-        linkSent: "Un lien pour réinitialiser votre mot de passe a été envoyé par e-mail à"
-      }
-    }
+        linkSent:
+          "Un lien pour réinitialiser votre mot de passe a été envoyé par e-mail à",
+      },
+    },
   },
 
   // account page
@@ -243,7 +262,7 @@ export default {
       infos: {
         messageSent: "Votre message a été envoyé",
       },
-    }
+    },
   },
 
   // home page
@@ -254,7 +273,8 @@ export default {
         strongText: "25 000 emplois",
         lastPart: " vacants dès maintenant !",
       },
-      description: "Le logiciel de service sur le terrain le plus complet pour les secteurs de l'assistance informatique et mobile, des services d'incendie, de l'électricité, de la maintenance, du CVC et de la sécurité",
+      description:
+        "Le logiciel de service sur le terrain le plus complet pour les secteurs de l'assistance informatique et mobile, des services d'incendie, de l'électricité, de la maintenance, du CVC et de la sécurité",
       button: "Inscription gratuite",
       numbers: {
         users: "Utilisateurs",
@@ -295,6 +315,6 @@ export default {
 
   // Payment form
   paymentForm: {
-    payButton: "Payer"
-  }
-}
+    payButton: "Payer",
+  },
+};

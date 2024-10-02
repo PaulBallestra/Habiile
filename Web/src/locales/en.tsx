@@ -34,33 +34,49 @@ export default {
       emptyItemStatus: "Please enter the status",
       // not valid
       notValidEmail: "Please enter a valid email (exemple@email.com)",
-      notValidPassword: "Please enter a valid password (more than 6 characters)",
+      notValidPassword:
+        "Please enter a valid password (more than 6 characters)",
       notValidPhoneNumber: "Please enter a valid phone number (ex: 0612345678)",
     },
   },
 
   // complex translations --------------------------------------------------
   translation: {
-
     // reset password page
     resetPasswordPage: {
       form: {
         infos: {
           passwordChanged: `Your password has been changed. You can now <a href={{loginPath}}>connect</a> to your account.`,
-        }
-      }
+        },
+      },
     },
-    
   },
 
   // simple translations ---------------------------------------------------
   // header
   header: {
     elements: {
-      home: "Home",
-      contact: "Contact",
-      about: "About Us",
-      legals: "Legals",
+      // home: "Home",
+      // contact: "Contact",
+      // about: "About Us",
+      // legals: "Legals",
+      diagnosis: "Diagnosis",
+      estimate: "Estimate",
+      workMonitoring: "Work Monitoring",
+      grants: "Grants",
+      login: "Login",
+    },
+    heroSection: {
+      title: "Improve the energy performance of your property with ease",
+      subtitle:
+        "Get free quotes from certified craftsmen and follow your work with complete peace of mind.",
+      buttonText: "START A FREE DIAGNOSTIC",
+    },
+    howItWorksSection: {
+      title: "How it works ?",
+    },
+    testimonialsSection: {
+      title: "What our users say",
     },
     itemsLink: "Jobs",
     loginLink: "Log In",
@@ -72,7 +88,7 @@ export default {
     elements: {
       aboutUs: "About us",
       legals: "Legal notices",
-    }
+    },
   },
 
   // login page
@@ -90,8 +106,8 @@ export default {
       links: {
         lostPassword: "Forgot your password ? Click here",
         routeToLogin: "Don't have an account? Sign up here",
-      }
-    }
+      },
+    },
   },
 
   // signup page
@@ -104,7 +120,7 @@ export default {
         email: "Email",
         phoneNumber: "Phone number (optional)",
         password: "Password",
-        repeatPassword: "Repeat password"
+        repeatPassword: "Repeat password",
       },
       placeholders: {
         firstName: "First Name",
@@ -112,12 +128,12 @@ export default {
         email: "Email",
         phoneNumber: "Phone number (optional)",
         password: "Password",
-        repeatPassword: "Repeat password"
+        repeatPassword: "Repeat password",
       },
       links: {
         navigateToLogIn: "Already registered? Log in here",
       },
-    }
+    },
   },
 
   // reset password page
@@ -156,9 +172,9 @@ export default {
         email: "Email",
       },
       infos: {
-        linkSent: "A link to reset your password has been sent to"
-      }
-    }
+        linkSent: "A link to reset your password has been sent to",
+      },
+    },
   },
 
   // account page
@@ -243,7 +259,7 @@ export default {
       infos: {
         messageSent: "Your message has been sent",
       },
-    }
+    },
   },
 
   // home page
@@ -254,7 +270,8 @@ export default {
         strongText: "25,000 Job",
         lastPart: " Vacancies Right Now!",
       },
-      description: "The most complete field service software for IT & Mobile Support, Fire Services, Electrical, Maintenance, HVAC & Security Industries",
+      description:
+        "The most complete field service software for IT & Mobile Support, Fire Services, Electrical, Maintenance, HVAC & Security Industries",
       button: "Sign Up Free",
       numbers: {
         users: "Users",
@@ -295,6 +312,6 @@ export default {
 
   // Payment form
   paymentForm: {
-    payButton: "Pay"
-  }
-}
+    payButton: "Pay",
+  },
+};

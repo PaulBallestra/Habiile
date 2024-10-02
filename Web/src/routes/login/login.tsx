@@ -11,17 +11,17 @@ import { BsArrowRight, BsKey } from "react-icons/bs";
 import { FORM_STYLE_INPUT_WITH_ICON } from "../../constants/cts_form";
 import { BiEnvelope } from "react-icons/bi";
 import { COLOR_SPECIAL } from "../../constants/cts_colors";
- 
+
 const initialFormState = {
-  email : "",
-  password : "",
-}
+  email: "",
+  password: "",
+};
 
 const LoginPage = () => {
   const { t } = useTranslation();
-  const [ formValues, setFormValues ] = useState(initialFormState);
+  const [formValues, setFormValues] = useState(initialFormState);
   const { onLogin } = useAuthentication();
-  const [ redirectToHome, _setRedirectToHome ] = useState(false);
+  const [redirectToHome, _setRedirectToHome] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,53 +29,57 @@ const LoginPage = () => {
       email: formValues.email,
       password: formValues.password,
     })
-    .then(() => _setRedirectToHome(true))
-    .catch ((error) => alert(error))
-  }
+      .then(() => _setRedirectToHome(true))
+      .catch((error) => alert(error));
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormValues({
       ...formValues,
       [name]: value,
-    })
-  }
+    });
+  };
   // after user connected, redirect to home
-  if(redirectToHome) {
-    return <Navigate to={getPageUrl(PATH.home)} />
+  if (redirectToHome) {
+    return <Navigate to={getPageUrl(PATH.home)} />;
   }
 
   return (
     <Wrapper>
+      <h1>Connexion</h1>
       {/* main container */}
-      <MainContainer about={<h1>{t("mainTitle", {ns: "loginPage"})}</h1>}>
+      {/* <MainContainer about={<h1>{t("mainTitle", { ns: "loginPage" })}</h1>}>
         <Container>
-          <CenterForm>  {/* this component is intended to set the form width and so, center the form */}
-            <Form 
-              onHandleSubmit={handleSubmit}
-              submitBtn={<BsArrowRight />}
-            >
-              {/* email */}
-              <label htmlFor="email">{t("form.labels.email", {ns: "loginPage"})}</label>
+          <CenterForm>
+            <Form onHandleSubmit={handleSubmit} submitBtn={<BsArrowRight />}>
+              <label htmlFor="email">
+                {t("form.labels.email", { ns: "loginPage" })}
+              </label>
               <div className={FORM_STYLE_INPUT_WITH_ICON}>
                 <input
                   type="email"
                   id="email"
                   name="email"
-                  placeholder={"" + t("form.placeholders.email", {ns: "loginPage"})}
+                  placeholder={
+                    "" + t("form.placeholders.email", { ns: "loginPage" })
+                  }
                   required
                   onChange={handleChange}
                 />
                 <BiEnvelope />
               </div>
-              {/* password */}
-              <label htmlFor="password">{t("form.labels.password", {ns: "loginPage"})}</label>
+              <label htmlFor="password">
+                {t("form.labels.password", { ns: "loginPage" })}
+              </label>
               <div className={FORM_STYLE_INPUT_WITH_ICON}>
                 <input
                   type="password"
                   id="password"
                   name="password"
-                  placeholder={"" + t("form.placeholders.password", {ns: "loginPage"})}
+                  placeholder={
+                    "" + t("form.placeholders.password", { ns: "loginPage" })
+                  }
                   minLength={6}
                   required
                   onChange={handleChange}
@@ -84,19 +88,21 @@ const LoginPage = () => {
               </div>
               <FormFooter>
                 <Links>
-                  {/* lost password link */}
-                  <Link to={getPageUrl(PATH.lost_pwd)}>{t("form.links.lostPassword", {ns: "loginPage"})}</Link>
-                  {/* navigate to sign up link */}
-                  <Link to={getPageUrl(PATH.signup)} >{t("form.links.routeToLogin", {ns: "loginPage"})}</Link>
+                  <Link to={getPageUrl(PATH.lost_pwd)}>
+                    {t("form.links.lostPassword", { ns: "loginPage" })}
+                  </Link>
+                  <Link to={getPageUrl(PATH.signup)}>
+                    {t("form.links.routeToLogin", { ns: "loginPage" })}
+                  </Link>
                 </Links>
               </FormFooter>
             </Form>
           </CenterForm>
         </Container>
-      </MainContainer>
+      </MainContainer> */}
     </Wrapper>
-  )
-}
+  );
+};
 
 export default LoginPage;
 
@@ -105,15 +111,10 @@ export default LoginPage;
 //////////////////////////////////////////////////////////////////////////*/
 
 const Wrapper = styled.div`
-
-`
-
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 5rem;
-`
+  position: absolute;
+  left: 8px;
+  top: 128px;
+`;
 
 const CenterForm = styled.div`
   width: 60%;
@@ -122,7 +123,7 @@ const CenterForm = styled.div`
   @media (max-width: 1100px) {
     width: 95%;
   }
-`
+`;
 
 const Links = styled.div`
   margin-top: 1rem;
@@ -136,8 +137,6 @@ const Links = styled.div`
     font-size: 12px;
     font-weight: bold;
   }
-`
+`;
 
-const FormFooter = styled.div`
-
-`
+const FormFooter = styled.div``;

@@ -18,7 +18,6 @@ import { I18nextProvider } from "react-i18next";
 import i18n from "../locales/i18n";
 import { DEFAULT_LANGUAGE } from "../constants/cts_language";
 import { useApp } from "../common/contexts/appContext";
-import Wallpaper from "../components/Wallpaper";
 import { IUserAuthenticationInfos } from "../interfaces/user";
 
 // ⚠️ Lors de la création d'une nouvelle route, il faut ajouter le chemin dans le
@@ -39,47 +38,50 @@ const AppRoutes = () => {
     isAuthenticated: false,
   };
   const { onGetUserIfIsAuthenticated, user } = useAuthentication();
-  const [ checkUser, _setCheckUser ] = useState<IUserAuthenticationInfos>(initialAuthenticatedUserInfos);
-  const [ stripeClientSecret, _setStripeClientSecret ] = useState<string>('');
+  const [checkUser, _setCheckUser] = useState<IUserAuthenticationInfos>(
+    initialAuthenticatedUserInfos
+  );
+  const [stripeClientSecret, _setStripeClientSecret] = useState<string>("");
 
   // set user authenticated infos
   useEffect(() => {
     onGetUserIfIsAuthenticated()
       .then((returnUser) => {
-        if(returnUser) {
+        if (returnUser) {
           // authenticated user
           _setCheckUser({
             ...returnUser,
             isWaitingAuthenticationResponse: false,
             isAuthenticated: true,
-          })
-        }else {
+          });
+        } else {
           // not authenticated user
           _setCheckUser({
             ...initialAuthenticatedUserInfos,
             isWaitingAuthenticationResponse: false,
             isAuthenticated: false,
-          })
+          });
         }
       })
       .catch((err) => {
         console.error(err);
-      })
+      });
   }, [user]);
 
   // on logout / user does not exist -> set the default initial settings to prevent bugs (page flickering)
   useEffect(() => {
-    if(!user) {
+    if (!user) {
       _setCheckUser({
         ...initialAuthenticatedUserInfos,
         isWaitingAuthenticationResponse: true,
         isAuthenticated: false,
-      })
+      });
     }
   }, [user]);
-  
-  return (
-    checkUser.isWaitingAuthenticationResponse ? <></> :
+
+  return checkUser.isWaitingAuthenticationResponse ? (
+    <></>
+  ) : (
     <I18nextProvider i18n={i18n}>
       <Routes>
         <Route path="/:lang" element={<LanguagePage />}>
@@ -87,54 +89,48 @@ const AppRoutes = () => {
             index
             element={
               <WrapperConnected>
-                <Wallpaper />
                 <HomePage />
               </WrapperConnected>
             }
           />
           <Route element={<AuthRoutes checkUser={checkUser} />}>
-            <Route 
-              path={PATH.signup} 
+            <Route
+              path={PATH.signup}
               element={
                 <WrapperConnected>
-                  <Wallpaper />
                   <SignUpPage />
                 </WrapperConnected>
-              } 
+              }
             />
-            <Route 
+            <Route
               path={PATH.login}
               element={
                 <WrapperConnected>
-                  <Wallpaper />
                   <LoginPage />
                 </WrapperConnected>
-              } 
+              }
             />
-            <Route 
-              path={PATH.lost_pwd} 
+            <Route
+              path={PATH.lost_pwd}
               element={
                 <WrapperConnected>
-                  <Wallpaper />
                   <LostPassword />
                 </WrapperConnected>
-              } 
+              }
             />
-            <Route 
-              path={PATH.reset_pwd} 
+            <Route
+              path={PATH.reset_pwd}
               element={
-              <WrapperConnected>
-                <Wallpaper />
-                <ResetPassword />
-              </WrapperConnected>
-              } 
+                <WrapperConnected>
+                  <ResetPassword />
+                </WrapperConnected>
+              }
             />
           </Route>
           <Route
             path={PATH.legals}
             element={
               <WrapperConnected>
-                <Wallpaper />
                 <LegalNotices />
               </WrapperConnected>
             }
@@ -143,7 +139,6 @@ const AppRoutes = () => {
             path={PATH.contact}
             element={
               <WrapperConnected>
-                <Wallpaper />
                 <Contact />
               </WrapperConnected>
             }
@@ -152,18 +147,23 @@ const AppRoutes = () => {
             path={PATH.about}
             element={
               <WrapperConnected>
-                <Wallpaper />
                 <About />
               </WrapperConnected>
             }
-          /> 
-          <Route element={<ProtectedRoutes checkUser={checkUser} path={PATH.login} />}>
+          />
+          <Route
+            element={
+              <ProtectedRoutes checkUser={checkUser} path={PATH.login} />
+            }
+          >
             <Route
               path={PATH.items}
               element={
-                <WrapperConnected >
-                  <Wallpaper />
-                  <Items stripeClientSecret={stripeClientSecret} _setStripeClientSecret={_setStripeClientSecret} />
+                <WrapperConnected>
+                  <Items
+                    stripeClientSecret={stripeClientSecret}
+                    _setStripeClientSecret={_setStripeClientSecret}
+                  />
                 </WrapperConnected>
               }
             />
@@ -171,7 +171,6 @@ const AppRoutes = () => {
               path={PATH.change_pwd}
               element={
                 <WrapperConnected>
-                  <Wallpaper />
                   <ChangePassword />
                 </WrapperConnected>
               }
@@ -180,34 +179,39 @@ const AppRoutes = () => {
               path={PATH.account}
               element={
                 <WrapperConnected>
-                  <Wallpaper />
                   <Account />
                 </WrapperConnected>
               }
             />
           </Route>
         </Route>
-        <Route path="/*" element={<RedirectToIndexLanguagePage />}/>
+        <Route path="/*" element={<RedirectToIndexLanguagePage />} />
       </Routes>
     </I18nextProvider>
   );
 };
 
-const AuthRoutes = ({checkUser}: {checkUser: IUserAuthenticationInfos}) => {
-  if(checkUser.isAuthenticated) {
-    return <Navigate to={PATH.account} replace />
-  }else {
-    return <Outlet />
+const AuthRoutes = ({ checkUser }: { checkUser: IUserAuthenticationInfos }) => {
+  if (checkUser.isAuthenticated) {
+    return <Navigate to={PATH.account} replace />;
+  } else {
+    return <Outlet />;
   }
-}
+};
 
-const ProtectedRoutes = ({path, checkUser}: {path: string, checkUser: IUserAuthenticationInfos}) => {
-  if(checkUser.isAuthenticated) {
-    return <Outlet />
-  }else {
-    return <Navigate to={path} replace />
+const ProtectedRoutes = ({
+  path,
+  checkUser,
+}: {
+  path: string;
+  checkUser: IUserAuthenticationInfos;
+}) => {
+  if (checkUser.isAuthenticated) {
+    return <Outlet />;
+  } else {
+    return <Navigate to={path} replace />;
   }
-}
+};
 
 const LanguagePage: React.FC = (): JSX.Element => {
   const { lang } = useParams();
@@ -217,7 +221,7 @@ const LanguagePage: React.FC = (): JSX.Element => {
     // send selected language to the server
     // the language will be changed on api
     onSendLanguage(lang || DEFAULT_LANGUAGE)
-    // change language in front
+      // change language in front
       .then(() => i18n.changeLanguage(lang));
   }, [lang]);
 
@@ -231,6 +235,6 @@ const RedirectToIndexLanguagePage = () => {
   // remove - to language string
   navigatorLangageDetected = navigatorLangageDetected.split("-")[0];
   return <Navigate to={`/${navigatorLangageDetected}/${PATH.home}`} />;
-}
+};
 
 export default AppRoutes;
