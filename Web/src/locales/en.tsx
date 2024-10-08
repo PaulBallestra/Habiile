@@ -270,6 +270,7 @@ export default {
 
   // home page
   homePage: {
+    mainTitle: "Habiile - Accueil",
     presentation: {
       title: {
         firstPart: "We Offer ",
