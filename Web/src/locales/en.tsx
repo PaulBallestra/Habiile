@@ -78,6 +78,10 @@ export default {
     testimonialsSection: {
       title: "What our users say",
     },
+    callToAction: {
+      title: "Ready to improve the performance of your property ?",
+      buttonText: "START A FREE DIAGNOSTIC",
+    },
     itemsLink: "Jobs",
     loginLink: "Log In",
     accountLink: "Account",
@@ -88,6 +92,8 @@ export default {
     elements: {
       aboutUs: "About us",
       legals: "Legal notices",
+      informations: "Legal informations",
+      contact: "Contact us",
     },
   },
 

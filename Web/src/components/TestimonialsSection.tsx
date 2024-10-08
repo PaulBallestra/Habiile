@@ -28,6 +28,7 @@ export default TestimonialsSection;
 const Container = styled.div`
   width: 100%;
   text-align: center;
+  margin-bottom: 32px;
 
   h2 {
     padding-top: 32px;
@@ -48,9 +49,8 @@ const CardsSection = styled.div`
   @media (max-width: 1078px) {
     margin: 32px 16px;
     gap: 24px;
-  }
-
-  @media (max-width: 864px) {
+    flex-direction: column;
+    align-items: center;
   }
 `;
 

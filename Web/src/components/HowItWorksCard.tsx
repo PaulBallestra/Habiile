@@ -9,33 +9,19 @@ import {
 import { useTranslation } from "react-i18next";
 import Button from "./Button";
 
-const HowItWorksCard = () => {
+const HowItWorksCard = ({ info }: { info: any }) => {
   const { t } = useTranslation();
   return (
     <WorkCard>
       <div>
-        <p>Étape 1</p>
-        <p>Lancer un diagnostic énergétique</p>
+        <p>{info.etape}</p>
+        <p>{info.title}</p>
       </div>
-      <p style={{ fontSize: 32 }}>🚀</p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
-        Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies
-        sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius
-        a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy
-        molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.
-        Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium
-        a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra
-        tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede.
-        Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit
-        sodales. Vestibulum ante ipsum primis in faucibus orci luctus et
-        ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede
-        pellentesque fermentum. Maecenas adipiscing ante non diam sodales
-        hendrerit.
-      </p>
+      <p style={{ fontSize: 32 }}>{info.icon}</p>
+      <p>{info.content}</p>
       <div>
         <Button
-          text={t(`heroSection.buttonText`, { ns: "header" })}
+          text={info.button}
           onClick={() => {
             console.log("CLICK");
           }}
@@ -79,5 +65,14 @@ const WorkCard = styled.div`
       font-weight: bold;
       color: ${GREY_DARK};
     }
+  }
+
+  // ========= MEDIA QUERIES ============
+  @media (max-width: 1078px) {
+    max-width: 55vw;
+  }
+
+  @media (max-width: 745px) {
+    max-width: 90vw;
   }
 `;

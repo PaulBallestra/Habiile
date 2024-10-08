@@ -80,6 +80,10 @@ export default {
     testimonialsSection: {
       title: "Ce que disent nos utilisateurs",
     },
+    callToAction: {
+      title: "Prêt à améliorer la performance de votre bien ?",
+      buttonText: "LANCER UN DIAGNOSTIC GRATUIT",
+    },
     itemsLink: "Jobs",
     loginLink: "Connexion",
     accountLink: "Compte",
@@ -90,6 +94,8 @@ export default {
     elements: {
       aboutUs: "Qui sommes nous ?",
       legals: "Mentions légales",
+      informations: "Informations légales",
+      contact: "Contactez-nous",
     },
   },
 

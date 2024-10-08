@@ -49,11 +49,15 @@ const TestCard = styled.div`
     line-height: 1.2;
     text-align: left;
   }
-  /* 
-  // ========= MEDIA QUERIES - TestCard ============
+
+  // ========= MEDIA QUERIES ============
   @media (max-width: 1078px) {
-    width: 100%;
-  } */
+    max-width: 66%;
+  }
+
+  @media (max-width: 662px) {
+    max-width: 100%;
+  }
 `;
 
 const UserInfos = styled.div`

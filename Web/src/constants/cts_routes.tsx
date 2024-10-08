@@ -18,6 +18,7 @@ const PATH = {
   estimate: "estimate",
   work_monitoring: "work-monitoring",
   grants: "grants",
+  informations: "informations",
 };
 
 export default PATH;

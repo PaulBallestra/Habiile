@@ -7,6 +7,8 @@ import { getPageUrl } from "../../locales/i18n";
 import HeroSection from "../../components/HeroSection";
 import HowItWorksSection from "../../components/HowItWorksSection";
 import TestimonialsSection from "../../components/TestimonialsSection";
+import CallToAction from "../../components/CallToAction";
+import Footer from "../../components/Footer";
 
 const HomePage = () => {
   const { t } = useTranslation();
@@ -24,9 +26,10 @@ const HomePage = () => {
       <TestimonialsSection />
 
       {/* CALL TO ACTION */}
-      <HeroSection />
+      <CallToAction />
 
       {/* FOOTER */}
+      <Footer />
     </Wrapper>
   );
 };
